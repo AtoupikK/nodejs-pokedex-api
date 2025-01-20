@@ -11,8 +11,9 @@ model PokemonCard  {
   id            Int     @id @default(autoincrement())
   name          String  @unique
   pokedexId     Int     @unique
-  type          Type  @relation(fields: [typeId], references: [id])
-  typeId        Int
+  type          Type[]
+  typeId        Int     @unique
+  typeId2       Int     @unique
   lifePoints    Int
   size          Float?
   weight        Float?
@@ -22,5 +23,5 @@ model PokemonCard  {
 model Type {
   id   Int    @id @default(autoincrement())
   name String @unique
-  pokemons PokemonCard[]
+  pokemons PokemonCard @relation(fields: [id], references: [typeId])
 }

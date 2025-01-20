@@ -4,6 +4,9 @@ const prisma = new PrismaClient();
 
 async function main() {
   await prisma.type.deleteMany();
+  await prisma.pokemonCard.deleteMany();
+  await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='PokemonCard'`;
+  await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='Type'`;
   await prisma.type.createMany({
     data: [
       { name: 'Normal' },
