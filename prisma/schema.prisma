@@ -7,12 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Type {
-  id   Int    @id @default(autoincrement())
-  name String @unique
-  pokemons PokemonCard[]
-}
-
 model PokemonCard  {
   id            Int     @id @default(autoincrement())
   name          String  @unique
@@ -23,4 +17,10 @@ model PokemonCard  {
   size          Float?
   weight        Float?
   imageUrl      String?
+}
+
+model Type {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+  pokemons PokemonCard[]
 }
